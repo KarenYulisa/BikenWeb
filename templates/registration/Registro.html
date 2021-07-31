@@ -1,0 +1,72 @@
+{% extends 'root.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title%}Biken || Registro{% endblock %}
+{% block classbody %}
+
+<body class="bgimg_registro" id="body">{% endblock %}
+
+    {% block content%}
+
+    <br>
+    <div class="container mt-5">
+
+        <div class="row">
+
+            {% load crispy_forms_tags %}
+            <div class="col-lg-4">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="p-2 mb-3 colorbiken text-white text-center" style="border-radius: 30px;">REGISTRO</div>
+
+                    <!-- {{ form | crispy}} -->
+                    <!-- <input type="email" class="form-control" placeholder="Enter email" id="email"> -->
+
+                    <div class="form-group">
+                        <label for="user">Nombre de Usuario</label>
+                        {% render_field form.username class="form-control inputs_forms" type="text" placeholder="Usuario"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="names">Nombres</label>
+                        {% render_field form.first_name class="form-control inputs_forms" type="text" placeholder="Agrega tu nombre"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Apellidos</label>
+                        {% render_field form.last_name class="form-control inputs_forms" type="text" placeholder="Agrega tu apellido"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Numero de celular</label>
+                        {% render_field form.numcelular|add_required_class:"is-required" class="form-control inputs_forms" type="text" pattern="[0-9]+" placeholder="Agrega tu número de celular"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electronico</label>
+                        {% render_field form.email class="form-control inputs_forms" type="email" placeholder="@example.com"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="pass1">Contraseña</label>
+                        {% render_field form.password1 class="form-control inputs_forms" type="password" placeholder="Agrega una contraseña"%}
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="pass2">Repite la contraseña</label>
+                        {% render_field form.password2  class="form-control inputs_forms" type="password" placeholder="Repite tu contraseña"%}
+                    </div>
+
+                    {% include 'pages/components/messages/messages_forms.html' %}
+
+                    <button type="submit" class="btn btn_biken_success colorbiken ml-5 mt-4">Aceptar</button>
+                    <button type="reset" class="btn btn-secondary btn_biken_cancel ml-5 mt-4">Limpiar</button>
+
+                </form>
+            </div>
+            <div class="col-lg-8">
+                <!--   <img src='{% static "/img/svg/bike2.svg" %}'> -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% endblock %}
